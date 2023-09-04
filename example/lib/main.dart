@@ -125,14 +125,18 @@ class _EasyDropdownTestState extends State<EasyDropdownTest> {
                 radius: 16,
                 dropdownWidth: 200,
                 dropdownHeight: 100,
-                animationDuration: Duration(milliseconds: 0),
+                animationDuration: Duration(milliseconds: 120),
               ),
               items: Future.sync(() async {
                 await Future.delayed(const Duration(seconds: 6));
                 return [
                   EasyDropdownTile(title: 'Test', onPressed: () {}),
                   EasyDropdownTile(title: 'Test 1', onPressed: () {}),
-                  EasyDropdownTile(title: 'Test 2', onPressed: () {}),
+                  EasyDropdownTile(
+                    title: 'Test 2',
+                    onPressed: () {},
+                    isSelected: true,
+                  ),
                 ];
               }),
               child: SizedBox(
@@ -159,11 +163,15 @@ class _EasyDropdownTestState extends State<EasyDropdownTest> {
                 radius: 16,
               ),
               items: Future.sync(() async {
-                await Future.delayed(const Duration(seconds: 10));
+                await Future.delayed(const Duration(seconds: 4));
                 return [
                   EasyDropdownTile(title: 'Test', onPressed: () {}),
                   EasyDropdownTile(title: 'Test 1', onPressed: () {}),
-                  EasyDropdownTile(title: 'Test 2', onPressed: () {}),
+                  EasyDropdownTile(
+                    title: 'Test 2',
+                    onPressed: () {},
+                    isSelected: true,
+                  ),
                 ];
               }),
               child: InkWell(

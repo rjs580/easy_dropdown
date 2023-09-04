@@ -166,7 +166,7 @@ class EasyDropdownListState extends State<EasyDropdownList> with SingleTickerPro
                 WidgetsBinding.instance.addPostFrameCallback((_) {
                   _itemCount = snapshot.data?.length.toDouble();
                   animationController.reset();
-                  animationController.forward();
+                  animationController.forward(from: 0.5);
                 });
               }
 
@@ -186,7 +186,12 @@ class EasyDropdownListState extends State<EasyDropdownList> with SingleTickerPro
                       physics: const AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
                       itemCount: snapshot.data?.length ?? 0,
                       itemBuilder: (context, index) {
-                        return snapshot.data?[index];
+                        return ConstrainedBox(
+                          constraints: BoxConstraints(
+                            minHeight: (widget.config.tileHeight ?? EasyDropdownList.kTileHeight),
+                          ),
+                          child: snapshot.data?[index],
+                        );
                       },
                       separatorBuilder: (context, index) {
                         if (widget.config.showDividers ?? false) {

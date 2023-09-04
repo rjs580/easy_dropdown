@@ -1,3 +1,7 @@
+## 1.2.1
+
+- Fixed an issue where `EasyDropdownTile` was not conforming to the set height set in `EasyDropdownConfig` or the default `kTileHeight`.
+
 ## 1.2.0
 
 - Added the `selectedBackgroundColor` property to `EasyDropdownTile` to customize the background color when a tile is selected. The default value is `ThemeData.splashColor`.
