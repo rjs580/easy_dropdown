@@ -83,7 +83,7 @@ class EasyDropdownListState extends State<EasyDropdownList> with SingleTickerPro
 
     animationController = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 160),
+      duration: widget.config.animationDuration ?? const Duration(milliseconds: 160),
     );
 
     _scrollController = ScrollController();
@@ -174,17 +174,21 @@ class EasyDropdownListState extends State<EasyDropdownList> with SingleTickerPro
                   child: Scrollbar(
                     controller: _scrollController,
                     thumbVisibility: true,
-                    child: ListView.builder(
+                    child: ListView.separated(
                       padding: EdgeInsets.zero,
                       controller: _scrollController,
                       shrinkWrap: true,
                       physics: const AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
                       itemCount: snapshot.data?.length ?? 0,
                       itemBuilder: (context, index) {
-                        return SizedBox(
-                          height: widget.config.tileHeight ?? EasyDropdownList.kTileHeight,
-                          child: snapshot.data?[index],
-                        );
+                        return snapshot.data?[index];
+                      },
+                      separatorBuilder: (context, index) {
+                        if (widget.config.showDividers ?? false) {
+                          return widget.config.dividerBuilder?.call(context, index) ?? const Divider();
+                        }
+
+                        return const SizedBox.shrink();
                       },
                     ),
                   ),

@@ -163,6 +163,8 @@ class EasyDropdownState extends State<EasyDropdown> {
         break;
     }
 
+    double buttonMargin = widget.config.buttonMargin ?? 4;
+
     final OverlayState overlayState = Overlay.of(context);
     _easyDropdownState = GlobalKey<EasyDropdownListState>();
     _overlayEntry = OverlayEntry(
@@ -178,8 +180,7 @@ class EasyDropdownState extends State<EasyDropdown> {
               ),
             ),
             Positioned(
-              top: spaceBelowButton >= minHeightOfTile ? (buttonRenderBox.localToGlobal(Offset.zero).dy + buttonSize.height + 4) : (buttonRenderBox.localToGlobal(Offset.zero).dy - dropdownHeight - 4),
-              // left: buttonRenderBox.localToGlobal(Offset.zero).dx + (buttonSize.width - dropdownWidth) / 2,
+              top: spaceBelowButton >= minHeightOfTile ? (buttonRenderBox.localToGlobal(Offset.zero).dy + buttonSize.height + buttonMargin) : (buttonRenderBox.localToGlobal(Offset.zero).dy - dropdownHeight - buttonMargin),
               left: horizontalPosition,
               child: SizedBox(
                 width: dropdownWidth,

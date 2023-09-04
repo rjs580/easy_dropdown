@@ -193,9 +193,7 @@ class EasyDropdownTile extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         titleWidget,
-                        Flexible(
-                          child: subtitleWidget,
-                        ),
+                        subtitleWidget,
                       ],
                     )
                   : titleWidget,

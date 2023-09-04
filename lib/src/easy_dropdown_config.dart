@@ -28,6 +28,10 @@ class EasyDropdownConfig extends Equatable {
     this.dropdownWidth,
     this.dropdownHeight,
     this.dropdownAlignment,
+    this.buttonMargin,
+    this.showDividers,
+    this.dividerBuilder,
+    this.animationDuration,
   });
 
   /// Optional radius for rounding the corners of the dropdown. Defaults to
@@ -52,11 +56,38 @@ class EasyDropdownConfig extends Equatable {
   /// [EasyDropdownAlignment.center] if null.
   final EasyDropdownAlignment? dropdownAlignment;
 
+  /// The margin between the button and the dropdown.
+  ///
+  /// Use this value to control how far the dropdown should be positioned
+  /// from the button.
+  final double? buttonMargin;
+
+  /// Whether to display dividers between items.
+  final bool? showDividers;
+
+  /// Builder function for custom dividers. Defaults to [Divider] if null
+  final DividerBuilder? dividerBuilder;
+
+  /// The duration for the dropdown animation.
+  ///
+  /// Use a [Duration] object to specify the animation duration in any time unit (e.g., seconds, milliseconds).
+  /// Defaults to 160 milliseconds.
+  final Duration? animationDuration;
+
   @override
   List<Object?> get props => [
         radius,
         backgroundColor,
         tileHeight,
         dropdownWidth,
+        dropdownHeight,
+        dropdownAlignment,
+        buttonMargin,
+        showDividers,
+        dividerBuilder,
+        animationDuration,
       ];
 }
+
+/// A typedef for the divider builder function.
+typedef DividerBuilder = Widget Function(BuildContext context, int index);

@@ -86,12 +86,21 @@ class _EasyDropdownTestState extends State<EasyDropdownTest> {
               key: _dropDownKey,
               config: const EasyDropdownConfig(
                 radius: 16,
+                showDividers: true,
               ),
               items: Future.sync(() async {
                 await Future.delayed(const Duration(seconds: 2));
                 return [
-                  EasyDropdownTile(title: 'Test', onPressed: () {}),
-                  EasyDropdownTile(title: 'Test 1', onPressed: () {}),
+                  EasyDropdownTile(
+                    title: 'Test',
+                    subtitle: 'A subtitle to test, maybe it can be long but could also be short',
+                    onPressed: () {},
+                  ),
+                  EasyDropdownTile(
+                    title: 'Test 1',
+                    subtitle: 'A subtitle to test, maybe it can be long but could also be short. A subtitle to test, maybe it can be long but could also be short. A subtitle to test, maybe it can be long but could also be short. A subtitle to test, maybe it can be long but could also be short. A subtitle to test, maybe it can be long but could also be short.',
+                    onPressed: () {},
+                  ),
                   EasyDropdownTile(title: 'Test 2', onPressed: () {}),
                 ];
               }),
@@ -116,6 +125,7 @@ class _EasyDropdownTestState extends State<EasyDropdownTest> {
                 radius: 16,
                 dropdownWidth: 200,
                 dropdownHeight: 100,
+                animationDuration: Duration(milliseconds: 0),
               ),
               items: Future.sync(() async {
                 await Future.delayed(const Duration(seconds: 6));

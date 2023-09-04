@@ -19,7 +19,7 @@ To use EasyDropdown in your Flutter project, add it as a dependency in your `pub
 
 ```yaml
 dependencies:
-  easy_dropdown2: ^1.0.0  # Replace with the latest version
+  easy_dropdown2: ^1.1.0  # Replace with the latest version
 ```
 Then, run `flutter pub get` to fetch the package.
 
@@ -78,8 +78,8 @@ class MyApp extends StatelessWidget {
 }
 ```
 
-### Documentation
+## Documentation
 For detailed usage instructions and customization options, please refer to the [documentation](https://pub.dev/packages/easy_dropdown2).
 
-### License
+## License
 This project is licensed under the MIT License - see the LICENSE file for details.
