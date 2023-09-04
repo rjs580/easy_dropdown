@@ -41,13 +41,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.17.2"
-  easy_dropdown:
+  easy_dropdown2:
     dependency: "direct main"
     description:
       path: ".."
       relative: true
     source: path
-    version: "0.0.1"
+    version: "1.0.0"
   equatable:
     dependency: transitive
     description:

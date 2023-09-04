@@ -8,7 +8,7 @@
 ///
 /// Usage:
 /// ```
-/// import 'package:easy_dropdown/easy_dropdown.dart';
+/// import 'package:easy_dropdown2/easy_dropdown2.dart';
 ///
 /// // Create an EasyDropdown widget with custom configuration and items.
 /// EasyDropdown(

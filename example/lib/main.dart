@@ -1,4 +1,4 @@
-import 'package:easy_dropdown/easy_dropdown.dart';
+import 'package:easy_dropdown2/easy_dropdown2.dart';
 import 'package:flutter/material.dart';
 
 void main() {

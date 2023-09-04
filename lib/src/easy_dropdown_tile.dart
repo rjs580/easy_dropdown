@@ -1,4 +1,4 @@
-import 'package:easy_dropdown/src/easy_dropdown_list.dart';
+import 'package:easy_dropdown2/src/easy_dropdown_list.dart';
 import 'package:flutter/material.dart';
 
 /// A widget representing a tile within an EasyDropdown.

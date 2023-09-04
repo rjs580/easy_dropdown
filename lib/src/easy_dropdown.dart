@@ -1,9 +1,9 @@
 import 'dart:async';
 
-import 'package:easy_dropdown/src/easy_dropdown_alignment.dart';
-import 'package:easy_dropdown/src/easy_dropdown_config.dart';
-import 'package:easy_dropdown/src/easy_dropdown_list.dart';
-import 'package:easy_dropdown/src/easy_dropdown_tile.dart';
+import 'package:easy_dropdown2/src/easy_dropdown_alignment.dart';
+import 'package:easy_dropdown2/src/easy_dropdown_config.dart';
+import 'package:easy_dropdown2/src/easy_dropdown_list.dart';
+import 'package:easy_dropdown2/src/easy_dropdown_tile.dart';
 import 'package:flutter/material.dart';
 
 /// A widget that provides dropdown functionality.

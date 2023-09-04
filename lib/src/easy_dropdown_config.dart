@@ -1,4 +1,4 @@
-import 'package:easy_dropdown/src/easy_dropdown_alignment.dart';
+import 'package:easy_dropdown2/src/easy_dropdown_alignment.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
