@@ -116,7 +116,12 @@ class EasyDropdownListState extends State<EasyDropdownList> with SingleTickerPro
         ),
       );
     } else {
-      shape = theme.floatingActionButtonTheme.shape;
+      shape = theme.floatingActionButtonTheme.shape ??
+          const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(16),
+            ),
+          );
     }
 
     return AnimatedBuilder(

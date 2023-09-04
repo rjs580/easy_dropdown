@@ -69,6 +69,10 @@ class EasyDropdownTile extends StatelessWidget {
   ///
   /// The [selectedIconPadding] parameter controls the padding around the selected
   /// icon. Defaults to `EdgeInsets.only(left: 16)`.
+  ///
+  /// The [selectedBackgroundColor] is the background color of the tile when it is selected.
+  /// Defaults to [ThemeData.splashColor].
+
   const EasyDropdownTile({
     super.key,
     required this.title,
@@ -88,6 +92,7 @@ class EasyDropdownTile extends StatelessWidget {
     this.selectedIconColor,
     this.selectedIconSize,
     this.selectedIconPadding = const EdgeInsets.only(left: 16),
+    this.selectedBackgroundColor,
   });
 
   /// The [padding] parameter controls the padding applied to the tile. Defaults
@@ -142,6 +147,10 @@ class EasyDropdownTile extends StatelessWidget {
   /// The padding around the selected icon. Defaults to `EdgeInsets.only(left: 16)`.
   final EdgeInsets selectedIconPadding;
 
+  /// The [selectedBackgroundColor] is the background color of the tile when it is selected.
+  /// Defaults to [ThemeData.splashColor].
+  final Color? selectedBackgroundColor;
+
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
@@ -173,8 +182,9 @@ class EasyDropdownTile extends StatelessWidget {
           onPressed?.call();
         });
       },
-      child: Padding(
+      child: Container(
         padding: padding,
+        color: isSelected == true ? (selectedBackgroundColor ?? theme.splashColor) : null,
         child: Row(
           children: [
             if (icon != null)

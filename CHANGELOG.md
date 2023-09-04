@@ -1,3 +1,9 @@
+## 1.2.0
+
+- Added the `selectedBackgroundColor` property to `EasyDropdownTile` to customize the background color when a tile is selected. The default value is `ThemeData.splashColor`.
+- Added a default value for the `radius` property in `EasyDropdownConfig`. If `radius` is null, it will use `FloatingActionButtonThemeData.shape` as the default value. If `FloatingActionButtonThemeData.shape` is also null, the radius will default to 16.
+
+
 ## 1.1.0
 
 - Added `buttonMargin` configuration option to `EasyDropdownConfig` for controlling the margin between the button and the dropdown.

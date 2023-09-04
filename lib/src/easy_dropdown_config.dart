@@ -35,7 +35,7 @@ class EasyDropdownConfig extends Equatable {
   });
 
   /// Optional radius for rounding the corners of the dropdown. Defaults to
-  /// [FloatingActionButtonThemeData.shape] if null.
+  /// [FloatingActionButtonThemeData.shape] if null. Defaults to 16 if [FloatingActionButtonThemeData.shape] is null.
   final double? radius;
 
   /// Optional background color of the dropdown. Defaults to
