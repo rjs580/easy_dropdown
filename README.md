@@ -2,7 +2,7 @@
 
 EasyDropdown is a Flutter library that simplifies the creation of customizable and user-friendly dropdown menus. It offers flexible positioning, styling, and a straightforward API to create dropdowns with ease.
 
-![EasyDropdown Demo](https://github.com/rjs580/easy_dropdown/blob/master/EasyDropdownDemo.gif?raw=true)
+<img src="https://github.com/rjs580/easy_dropdown/blob/master/EasyDropdownDemo.gif?raw=true" width="200"/>
 
 ## Features
 
