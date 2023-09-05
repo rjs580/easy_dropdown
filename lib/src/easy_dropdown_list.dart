@@ -89,7 +89,7 @@ class EasyDropdownListState extends State<EasyDropdownList> with SingleTickerPro
     _scrollController = ScrollController();
 
     _heightAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(parent: animationController, curve: Curves.fastOutSlowIn));
-    _opacityAnimation = Tween<double>(begin: 0.2, end: 1.0).animate(CurvedAnimation(parent: animationController, curve: Curves.ease));
+    _opacityAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(parent: animationController, curve: Curves.fastOutSlowIn));
 
     _itemCount = widget.itemCount;
 
@@ -132,6 +132,7 @@ class EasyDropdownListState extends State<EasyDropdownList> with SingleTickerPro
         return SizedBox(
           height: _heightAnimation.value * height,
           child: ClipRect(
+            clipBehavior: Clip.none,
             child: OverflowBox(
               maxHeight: _heightAnimation.value * height,
               minHeight: _heightAnimation.value * height,
@@ -146,7 +147,7 @@ class EasyDropdownListState extends State<EasyDropdownList> with SingleTickerPro
       },
       child: Material(
         type: MaterialType.canvas,
-        elevation: 0,
+        elevation: widget.config.dropdownElevation ?? 2,
         clipBehavior: Clip.antiAlias,
         shape: shape,
         color: widget.config.backgroundColor ?? theme.colorScheme.surfaceVariant,
@@ -165,7 +166,6 @@ class EasyDropdownListState extends State<EasyDropdownList> with SingleTickerPro
               if (_itemCount == null) {
                 WidgetsBinding.instance.addPostFrameCallback((_) {
                   _itemCount = snapshot.data?.length.toDouble();
-                  animationController.reset();
                   animationController.forward(from: 0.5);
                 });
               }
@@ -176,6 +176,8 @@ class EasyDropdownListState extends State<EasyDropdownList> with SingleTickerPro
                   context: context,
                   removeTop: true,
                   removeBottom: true,
+                  removeRight: true,
+                  removeLeft: true,
                   child: Scrollbar(
                     controller: _scrollController,
                     thumbVisibility: true,

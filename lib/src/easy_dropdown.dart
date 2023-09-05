@@ -119,84 +119,86 @@ class EasyDropdownState extends State<EasyDropdown> {
       return;
     }
 
-    final RenderBox buttonRenderBox = _dropDownKey.currentContext!.findRenderObject() as RenderBox;
-    final buttonSize = buttonRenderBox.size;
-
-    final screenSize = MediaQuery.of(context).size;
-
-    final dropdownWidth = widget.config.dropdownWidth ?? buttonSize.width; // Set the width as needed
-    double dropdownHeight;
-
-    // Calculate available space below and above the button
-    final spaceBelowButton = screenSize.height - buttonRenderBox.localToGlobal(Offset.zero).dy - buttonSize.height;
-    final spaceAboveButton = buttonRenderBox.localToGlobal(Offset.zero).dy;
-
-    final minHeightOfTile = widget.config.dropdownHeight ?? (widget.config.tileHeight ?? EasyDropdownList.kTileHeight);
-    bool displayBelow = true;
-
-    if (spaceBelowButton >= minHeightOfTile) {
-      // Sufficient space below the button, display below
-      dropdownHeight = spaceBelowButton;
-    } else if (spaceAboveButton >= minHeightOfTile) {
-      // Sufficient space above the button, display above
-      dropdownHeight = spaceAboveButton;
-      displayBelow = false;
-    } else {
-      // Not enough space below or above, use a default height
-      dropdownHeight = minHeightOfTile;
-    }
-
-    double horizontalPosition;
-
-    switch (widget.config.dropdownAlignment) {
-      case EasyDropdownAlignment.center:
-        horizontalPosition = buttonRenderBox.localToGlobal(Offset.zero).dx + (buttonSize.width - dropdownWidth) / 2; // Center horizontally
-        break;
-      case EasyDropdownAlignment.left:
-        horizontalPosition = buttonRenderBox.localToGlobal(Offset.zero).dx;
-        break;
-      case EasyDropdownAlignment.right:
-        horizontalPosition = buttonRenderBox.localToGlobal(Offset.zero).dx + buttonSize.width - dropdownWidth;
-        break;
-      default:
-        horizontalPosition = buttonRenderBox.localToGlobal(Offset.zero).dx + (buttonSize.width - dropdownWidth) / 2; // Default to center
-        break;
-    }
-
-    double buttonMargin = widget.config.buttonMargin ?? 4;
-
     final OverlayState overlayState = Overlay.of(context);
     _easyDropdownState = GlobalKey<EasyDropdownListState>();
     _overlayEntry = OverlayEntry(
       builder: (context) {
-        return Stack(
-          children: [
-            Positioned.fill(
-              child: GestureDetector(
-                behavior: HitTestBehavior.opaque,
-                onTap: () {
-                  removeOverlay();
-                },
-              ),
-            ),
-            Positioned(
-              top: spaceBelowButton >= minHeightOfTile ? (buttonRenderBox.localToGlobal(Offset.zero).dy + buttonSize.height + buttonMargin) : (buttonRenderBox.localToGlobal(Offset.zero).dy - dropdownHeight - buttonMargin),
-              left: horizontalPosition,
-              child: SizedBox(
-                width: dropdownWidth,
-                height: widget.config.dropdownHeight ?? dropdownHeight,
-                child: EasyDropdownList(
-                  key: _easyDropdownState,
-                  items: widget.items,
-                  config: widget.config,
-                  alignment: displayBelow ? Alignment.topCenter : Alignment.bottomCenter,
-                  itemCount: widget.itemCount,
-                  removeOverlay: removeOverlay,
+        return OrientationBuilder(builder: (context, orientation) {
+          final RenderBox buttonRenderBox = _dropDownKey.currentContext!.findRenderObject() as RenderBox;
+          final buttonSize = buttonRenderBox.size;
+
+          final screenSize = MediaQuery.of(context).size;
+
+          final dropdownWidth = widget.config.dropdownWidth ?? buttonSize.width; // Set the width as needed
+          double dropdownHeight;
+
+          // Calculate available space below and above the button
+          final spaceBelowButton = screenSize.height - buttonRenderBox.localToGlobal(Offset.zero).dy - buttonSize.height;
+          final spaceAboveButton = buttonRenderBox.localToGlobal(Offset.zero).dy;
+
+          final minHeightOfTile = widget.config.dropdownHeight ?? (widget.config.tileHeight ?? EasyDropdownList.kTileHeight);
+          bool displayBelow = true;
+
+          if (spaceBelowButton >= minHeightOfTile) {
+            // Sufficient space below the button, display below
+            dropdownHeight = spaceBelowButton;
+          } else if (spaceAboveButton >= minHeightOfTile) {
+            // Sufficient space above the button, display above
+            dropdownHeight = widget.config.dropdownHeight != null ? minHeightOfTile : spaceAboveButton;
+            displayBelow = false;
+          } else {
+            // Not enough space below or above, use a default height
+            dropdownHeight = minHeightOfTile;
+          }
+
+          double horizontalPosition;
+
+          switch (widget.config.dropdownAlignment) {
+            case EasyDropdownAlignment.center:
+              horizontalPosition = buttonRenderBox.localToGlobal(Offset.zero).dx + (buttonSize.width - dropdownWidth) / 2; // Center horizontally
+              break;
+            case EasyDropdownAlignment.left:
+              horizontalPosition = buttonRenderBox.localToGlobal(Offset.zero).dx;
+              break;
+            case EasyDropdownAlignment.right:
+              horizontalPosition = buttonRenderBox.localToGlobal(Offset.zero).dx + buttonSize.width - dropdownWidth;
+              break;
+            default:
+              horizontalPosition = buttonRenderBox.localToGlobal(Offset.zero).dx + (buttonSize.width - dropdownWidth) / 2; // Default to center
+              break;
+          }
+
+          double buttonMargin = widget.config.buttonMargin ?? 4;
+
+          return Stack(
+            children: [
+              Positioned.fill(
+                child: GestureDetector(
+                  behavior: HitTestBehavior.opaque,
+                  onTap: () {
+                    removeOverlay();
+                  },
                 ),
               ),
-            )
-          ],
-        );
+              Positioned(
+                top: spaceBelowButton >= minHeightOfTile ? (buttonRenderBox.localToGlobal(Offset.zero).dy + buttonSize.height + buttonMargin) : (buttonRenderBox.localToGlobal(Offset.zero).dy - dropdownHeight - buttonMargin),
+                left: horizontalPosition,
+                child: SizedBox(
+                  width: dropdownWidth,
+                  height: widget.config.dropdownHeight ?? dropdownHeight,
+                  child: EasyDropdownList(
+                    key: _easyDropdownState,
+                    items: widget.items,
+                    config: widget.config,
+                    alignment: displayBelow ? Alignment.topCenter : Alignment.bottomCenter,
+                    itemCount: widget.itemCount,
+                    removeOverlay: removeOverlay,
+                  ),
+                ),
+              )
+            ],
+          );
+        });
       },
     );
 

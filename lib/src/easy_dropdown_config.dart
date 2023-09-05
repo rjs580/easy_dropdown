@@ -21,6 +21,19 @@ class EasyDropdownConfig extends Equatable {
   ///
   /// [dropdownAlignment]: Alignment of the dropdown relative to the button.
   /// If null, the default is [EasyDropdownAlignment.center].
+  ///
+  /// [buttonMargin]: The margin between the button and the dropdown.
+  ///
+  /// [showDividers]: Whether to display dividers between items.
+  ///
+  /// [dividerBuilder]: Builder function for custom dividers. Defaults to [Divider] if null
+  ///
+  /// [animationDuration]: The duration for the dropdown animation.
+  /// If null, the default is 160 milliseconds.
+  ///
+  /// [dropdownElevation]: The elevation of the dropdown menu. Controls the shadow depth of the dropdown.
+  /// A higher value will make the dropdown appear elevated above the surrounding content.
+  /// If null, the default is 2.
   const EasyDropdownConfig({
     this.radius,
     this.backgroundColor,
@@ -32,6 +45,7 @@ class EasyDropdownConfig extends Equatable {
     this.showDividers,
     this.dividerBuilder,
     this.animationDuration,
+    this.dropdownElevation,
   });
 
   /// Optional radius for rounding the corners of the dropdown. Defaults to
@@ -74,6 +88,14 @@ class EasyDropdownConfig extends Equatable {
   /// Defaults to 160 milliseconds.
   final Duration? animationDuration;
 
+  /// The elevation of the dropdown menu. Controls the shadow depth of the dropdown.
+  /// A higher value will make the dropdown appear elevated above the surrounding content.
+  ///
+  /// By default, the elevation is set to 2, providing a subtle shadow effect.
+  ///
+  /// You can customize the elevation by specifying a different value. Use 0 for no shadow effect.
+  final double? dropdownElevation;
+
   @override
   List<Object?> get props => [
         radius,
@@ -86,6 +108,7 @@ class EasyDropdownConfig extends Equatable {
         showDividers,
         dividerBuilder,
         animationDuration,
+        dropdownElevation,
       ];
 }
 

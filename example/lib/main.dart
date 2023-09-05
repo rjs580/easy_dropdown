@@ -79,71 +79,35 @@ class _EasyDropdownTestState extends State<EasyDropdownTest> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            EasyDropdown(
-              key: _dropDownKey,
-              config: const EasyDropdownConfig(
-                radius: 16,
-                showDividers: true,
-              ),
-              items: Future.sync(() async {
-                await Future.delayed(const Duration(seconds: 2));
-                return [
-                  EasyDropdownTile(
-                    title: 'Test',
-                    subtitle: 'A subtitle to test, maybe it can be long but could also be short',
-                    onPressed: () {},
-                  ),
-                  EasyDropdownTile(
-                    title: 'Test 1',
-                    subtitle: 'A subtitle to test, maybe it can be long but could also be short. A subtitle to test, maybe it can be long but could also be short. A subtitle to test, maybe it can be long but could also be short. A subtitle to test, maybe it can be long but could also be short. A subtitle to test, maybe it can be long but could also be short.',
-                    onPressed: () {},
-                  ),
-                  EasyDropdownTile(title: 'Test 2', onPressed: () {}),
-                ];
-              }),
-              child: InkWell(
-                onTap: () {
-                  _dropDownKey.currentState?.showOverlay();
-                },
-                child: const InputDecorator(
-                  decoration: InputDecoration(
-                    labelText: 'Test Button',
-                    suffixIcon: Icon(Icons.arrow_drop_down),
-                  ),
-                  child: Text(
-                    'A selected field',
-                  ),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              EasyDropdown(
+                key: _dropDownKey,
+                config: const EasyDropdownConfig(
+                  radius: 16,
+                  showDividers: true,
                 ),
-              ),
-            ),
-            EasyDropdown(
-              key: _dropDownKey3,
-              config: const EasyDropdownConfig(
-                radius: 16,
-                dropdownWidth: 200,
-                dropdownHeight: 100,
-                animationDuration: Duration(milliseconds: 120),
-              ),
-              items: Future.sync(() async {
-                await Future.delayed(const Duration(seconds: 6));
-                return [
-                  EasyDropdownTile(title: 'Test', onPressed: () {}),
-                  EasyDropdownTile(title: 'Test 1', onPressed: () {}),
-                  EasyDropdownTile(
-                    title: 'Test 2',
-                    onPressed: () {},
-                    isSelected: true,
-                  ),
-                ];
-              }),
-              child: SizedBox(
-                width: 150,
+                items: Future.sync(() async {
+                  await Future.delayed(const Duration(seconds: 2));
+                  return [
+                    EasyDropdownTile(
+                      title: 'Test',
+                      subtitle: 'A subtitle to test, maybe it can be long but could also be short',
+                      onPressed: () {},
+                    ),
+                    EasyDropdownTile(
+                      title: 'Test 1',
+                      subtitle: 'A subtitle to test, maybe it can be long but could also be short. A subtitle to test, maybe it can be long but could also be short. A subtitle to test, maybe it can be long but could also be short. A subtitle to test, maybe it can be long but could also be short. A subtitle to test, maybe it can be long but could also be short.',
+                      onPressed: () {},
+                    ),
+                    EasyDropdownTile(title: 'Test 2', onPressed: () {}),
+                  ];
+                }),
                 child: InkWell(
                   onTap: () {
-                    _dropDownKey3.currentState?.showOverlay();
+                    _dropDownKey.currentState?.showOverlay();
                   },
                   child: const InputDecorator(
                     decoration: InputDecoration(
@@ -156,40 +120,81 @@ class _EasyDropdownTestState extends State<EasyDropdownTest> {
                   ),
                 ),
               ),
-            ),
-            EasyDropdown(
-              key: _dropDownKey2,
-              config: const EasyDropdownConfig(
-                radius: 16,
-              ),
-              items: Future.sync(() async {
-                await Future.delayed(const Duration(seconds: 4));
-                return [
-                  EasyDropdownTile(title: 'Test', onPressed: () {}),
-                  EasyDropdownTile(title: 'Test 1', onPressed: () {}),
-                  EasyDropdownTile(
-                    title: 'Test 2',
-                    onPressed: () {},
-                    isSelected: true,
-                  ),
-                ];
-              }),
-              child: InkWell(
-                onTap: () {
-                  _dropDownKey2.currentState?.showOverlay();
-                },
-                child: const InputDecorator(
-                  decoration: InputDecoration(
-                    labelText: 'Test Button',
-                    suffixIcon: Icon(Icons.arrow_drop_down),
-                  ),
-                  child: Text(
-                    'A selected field',
+              const SizedBox(height: 200),
+              EasyDropdown(
+                key: _dropDownKey3,
+                config: const EasyDropdownConfig(
+                  radius: 16,
+                  dropdownWidth: 200,
+                  dropdownHeight: 100,
+                  animationDuration: Duration(milliseconds: 120),
+                ),
+                items: Future.sync(() async {
+                  await Future.delayed(const Duration(seconds: 6));
+                  return [
+                    EasyDropdownTile(title: 'Test', onPressed: () {}),
+                    EasyDropdownTile(title: 'Test 1', onPressed: () {}),
+                    EasyDropdownTile(
+                      title: 'Test 2',
+                      onPressed: () {},
+                      isSelected: true,
+                    ),
+                  ];
+                }),
+                child: SizedBox(
+                  width: 150,
+                  child: InkWell(
+                    onTap: () {
+                      _dropDownKey3.currentState?.showOverlay();
+                    },
+                    child: const InputDecorator(
+                      decoration: InputDecoration(
+                        labelText: 'Test Button',
+                        suffixIcon: Icon(Icons.arrow_drop_down),
+                      ),
+                      child: Text(
+                        'A selected field',
+                      ),
+                    ),
                   ),
                 ),
               ),
-            )
-          ],
+              const SizedBox(height: 600),
+              EasyDropdown(
+                key: _dropDownKey2,
+                config: const EasyDropdownConfig(
+                  radius: 16,
+                  // dropdownHeight: 300,
+                ),
+                items: Future.sync(() async {
+                  await Future.delayed(const Duration(seconds: 4));
+                  return [
+                    EasyDropdownTile(title: 'Test', onPressed: () {}),
+                    EasyDropdownTile(title: 'Test 1', onPressed: () {}),
+                    EasyDropdownTile(
+                      title: 'Test 2',
+                      onPressed: () {},
+                      isSelected: true,
+                    ),
+                  ];
+                }),
+                child: InkWell(
+                  onTap: () {
+                    _dropDownKey2.currentState?.showOverlay();
+                  },
+                  child: const InputDecorator(
+                    decoration: InputDecoration(
+                      labelText: 'Test Button',
+                      suffixIcon: Icon(Icons.arrow_drop_down),
+                    ),
+                    child: Text(
+                      'A selected field',
+                    ),
+                  ),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

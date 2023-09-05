@@ -1,3 +1,9 @@
+## 1.3.0
+- Fixed an issue where the dropdown was not displayed correctly above the button when a specific height was specified and there was not enough room to display it below.
+- Resolved the problem with the scrollbar not rendering properly in landscape orientation.
+- Fixed the positioning of the dropdown when changing screen orientation.
+- Added a new feature to customize the elevation of the dropdown. Now you can control the shadow depth of the dropdown to enhance its appearance.
+
 ## 1.2.1
 
 - Fixed an issue where `EasyDropdownTile` was not conforming to the set height set in `EasyDropdownConfig` or the default `kTileHeight`.
@@ -6,7 +12,6 @@
 
 - Added the `selectedBackgroundColor` property to `EasyDropdownTile` to customize the background color when a tile is selected. The default value is `ThemeData.splashColor`.
 - Added a default value for the `radius` property in `EasyDropdownConfig`. If `radius` is null, it will use `FloatingActionButtonThemeData.shape` as the default value. If `FloatingActionButtonThemeData.shape` is also null, the radius will default to 16.
-
 
 ## 1.1.0
 
