@@ -124,19 +124,25 @@ class EasyDropdownState extends State<EasyDropdown> {
     _overlayEntry = OverlayEntry(
       builder: (context) {
         return OrientationBuilder(builder: (context, orientation) {
-          final RenderBox buttonRenderBox = _dropDownKey.currentContext!.findRenderObject() as RenderBox;
+          final RenderBox buttonRenderBox =
+              _dropDownKey.currentContext!.findRenderObject() as RenderBox;
           final buttonSize = buttonRenderBox.size;
 
           final screenSize = MediaQuery.of(context).size;
 
-          final dropdownWidth = widget.config.dropdownWidth ?? buttonSize.width; // Set the width as needed
+          final dropdownWidth = widget.config.dropdownWidth ??
+              buttonSize.width; // Set the width as needed
           double dropdownHeight;
 
           // Calculate available space below and above the button
-          final spaceBelowButton = screenSize.height - buttonRenderBox.localToGlobal(Offset.zero).dy - buttonSize.height;
-          final spaceAboveButton = buttonRenderBox.localToGlobal(Offset.zero).dy;
+          final spaceBelowButton = screenSize.height -
+              buttonRenderBox.localToGlobal(Offset.zero).dy -
+              buttonSize.height;
+          final spaceAboveButton =
+              buttonRenderBox.localToGlobal(Offset.zero).dy;
 
-          final minHeightOfTile = widget.config.dropdownHeight ?? (widget.config.tileHeight ?? EasyDropdownList.kTileHeight);
+          final minHeightOfTile = widget.config.dropdownHeight ??
+              (widget.config.tileHeight ?? EasyDropdownList.kTileHeight);
           bool displayBelow = true;
 
           if (spaceBelowButton >= minHeightOfTile) {
@@ -144,7 +150,9 @@ class EasyDropdownState extends State<EasyDropdown> {
             dropdownHeight = spaceBelowButton;
           } else if (spaceAboveButton >= minHeightOfTile) {
             // Sufficient space above the button, display above
-            dropdownHeight = widget.config.dropdownHeight != null ? minHeightOfTile : spaceAboveButton;
+            dropdownHeight = widget.config.dropdownHeight != null
+                ? minHeightOfTile
+                : spaceAboveButton;
             displayBelow = false;
           } else {
             // Not enough space below or above, use a default height
@@ -155,16 +163,26 @@ class EasyDropdownState extends State<EasyDropdown> {
 
           switch (widget.config.dropdownAlignment) {
             case EasyDropdownAlignment.center:
-              horizontalPosition = buttonRenderBox.localToGlobal(Offset.zero).dx + (buttonSize.width - dropdownWidth) / 2; // Center horizontally
+              horizontalPosition = buttonRenderBox
+                      .localToGlobal(Offset.zero)
+                      .dx +
+                  (buttonSize.width - dropdownWidth) / 2; // Center horizontally
               break;
             case EasyDropdownAlignment.left:
-              horizontalPosition = buttonRenderBox.localToGlobal(Offset.zero).dx;
+              horizontalPosition =
+                  buttonRenderBox.localToGlobal(Offset.zero).dx;
               break;
             case EasyDropdownAlignment.right:
-              horizontalPosition = buttonRenderBox.localToGlobal(Offset.zero).dx + buttonSize.width - dropdownWidth;
+              horizontalPosition =
+                  buttonRenderBox.localToGlobal(Offset.zero).dx +
+                      buttonSize.width -
+                      dropdownWidth;
               break;
             default:
-              horizontalPosition = buttonRenderBox.localToGlobal(Offset.zero).dx + (buttonSize.width - dropdownWidth) / 2; // Default to center
+              horizontalPosition = buttonRenderBox
+                      .localToGlobal(Offset.zero)
+                      .dx +
+                  (buttonSize.width - dropdownWidth) / 2; // Default to center
               break;
           }
 
@@ -181,7 +199,13 @@ class EasyDropdownState extends State<EasyDropdown> {
                 ),
               ),
               Positioned(
-                top: spaceBelowButton >= minHeightOfTile ? (buttonRenderBox.localToGlobal(Offset.zero).dy + buttonSize.height + buttonMargin) : (buttonRenderBox.localToGlobal(Offset.zero).dy - dropdownHeight - buttonMargin),
+                top: spaceBelowButton >= minHeightOfTile
+                    ? (buttonRenderBox.localToGlobal(Offset.zero).dy +
+                        buttonSize.height +
+                        buttonMargin)
+                    : (buttonRenderBox.localToGlobal(Offset.zero).dy -
+                        dropdownHeight -
+                        buttonMargin),
                 left: horizontalPosition,
                 child: SizedBox(
                   width: dropdownWidth,
@@ -190,7 +214,9 @@ class EasyDropdownState extends State<EasyDropdown> {
                     key: _easyDropdownState,
                     items: widget.items,
                     config: widget.config,
-                    alignment: displayBelow ? Alignment.topCenter : Alignment.bottomCenter,
+                    alignment: displayBelow
+                        ? Alignment.topCenter
+                        : Alignment.bottomCenter,
                     itemCount: widget.itemCount,
                     removeOverlay: removeOverlay,
                   ),
@@ -203,6 +229,7 @@ class EasyDropdownState extends State<EasyDropdown> {
     );
 
     overlayState.insert(_overlayEntry!);
+    setState(() {});
     widget.onDropdownStart?.call();
   }
 
@@ -217,6 +244,7 @@ class EasyDropdownState extends State<EasyDropdown> {
 
         _overlayEntry?.remove();
         _overlayEntry = null;
+        setState(() {});
       }
 
       return;
@@ -229,15 +257,24 @@ class EasyDropdownState extends State<EasyDropdown> {
 
       _overlayEntry?.remove();
       _overlayEntry = null;
+      setState(() {});
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      key: _dropDownKey,
-      type: MaterialType.transparency,
-      child: widget.child,
+    return PopScope(
+      canPop: _overlayEntry == null,
+      onPopInvoked: (canPop) {
+        if (!canPop) {
+          removeOverlay();
+        }
+      },
+      child: Material(
+        key: _dropDownKey,
+        type: MaterialType.transparency,
+        child: widget.child,
+      ),
     );
   }
 }

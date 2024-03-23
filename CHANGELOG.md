@@ -1,3 +1,6 @@
+## 1.3.1
+- Fixed an issue with Android Predictive Back feature
+
 ## 1.3.0
 - Fixed an issue where the dropdown was not displayed correctly above the button when a specific height was specified and there was not enough room to display it below.
 - Resolved the problem with the scrollbar not rendering properly in landscape orientation.
