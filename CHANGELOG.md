@@ -1,3 +1,6 @@
+## 1.3.2
+- Fix an issue where bold font gets applied to custom text styling
+
 ## 1.3.1
 - Fixed an issue with Android Predictive Back feature
 

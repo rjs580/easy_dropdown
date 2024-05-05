@@ -157,9 +157,10 @@ class EasyDropdownTile extends StatelessWidget {
 
     final Widget titleWidget = Text(
       title,
-      style: (titleStyle ?? theme.textTheme.labelLarge)?.copyWith(
-        fontWeight: FontWeight.bold,
-      ),
+      style: (titleStyle ??
+          theme.textTheme.labelLarge?.copyWith(
+            fontWeight: FontWeight.bold,
+          )),
       textAlign: titleAlignment ?? TextAlign.center,
     );
 
@@ -175,7 +176,8 @@ class EasyDropdownTile extends StatelessWidget {
     return InkWell(
       onTap: () {
         Future.delayed(const Duration(milliseconds: 160), () {
-          final dropdownList = context.findAncestorStateOfType<EasyDropdownListState>();
+          final dropdownList =
+              context.findAncestorStateOfType<EasyDropdownListState>();
           if (dropdownList != null) {
             dropdownList.widget.removeOverlay?.call();
           }
@@ -184,7 +186,9 @@ class EasyDropdownTile extends StatelessWidget {
       },
       child: Container(
         padding: padding,
-        color: isSelected == true ? (selectedBackgroundColor ?? theme.splashColor) : null,
+        color: isSelected == true
+            ? (selectedBackgroundColor ?? theme.splashColor)
+            : null,
         child: Row(
           children: [
             if (icon != null)
@@ -213,7 +217,8 @@ class EasyDropdownTile extends StatelessWidget {
                 padding: selectedIconPadding,
                 child: Icon(
                   selectedIcon ?? Icons.check_rounded,
-                  color: selectedIconColor ?? theme.colorScheme.onSurfaceVariant,
+                  color:
+                      selectedIconColor ?? theme.colorScheme.onSurfaceVariant,
                   size: selectedIconSize ?? 22,
                 ),
               ),
