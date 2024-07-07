@@ -146,8 +146,6 @@ class EasyDropdownState extends State<EasyDropdown> {
               (widget.config.tileHeight ?? EasyDropdownList.kTileHeight);
           bool displayBelow = true;
 
-          print(widget.config.dropdownDirection);
-
           double verticalPosition;
           double buttonMargin = widget.config.buttonMargin ?? 4;
 

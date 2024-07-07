@@ -1,16 +1,25 @@
+## 1.4.2
+
+- Remove print statements
+
 ## 1.4.1
+
 - Fixed an issue where the set direction of the dropdown was not working
 
 ## 1.4.0
+
 - Added a new direction feature for dropdowns. Now, you can specify the direction of the dropdown by using the `EasyDropdownDirection` enumeration in the `EasyDropdownConfig`. If not specified, the dropdown will follow the default direction.
 
 ## 1.3.2
+
 - Fix an issue where bold font gets applied to custom text styling
 
 ## 1.3.1
+
 - Fixed an issue with Android Predictive Back feature
 
 ## 1.3.0
+
 - Fixed an issue where the dropdown was not displayed correctly above the button when a specific height was specified and there was not enough room to display it below.
 - Resolved the problem with the scrollbar not rendering properly in landscape orientation.
 - Fixed the positioning of the dropdown when changing screen orientation.
