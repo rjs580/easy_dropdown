@@ -1,3 +1,6 @@
+## 1.4.0
+- Added a new direction feature for dropdowns. Now, you can specify the direction of the dropdown by using the `EasyDropdownDirection` enumeration in the `EasyDropdownConfig`. If not specified, the dropdown will follow the default direction.
+
 ## 1.3.2
 - Fix an issue where bold font gets applied to custom text styling
 

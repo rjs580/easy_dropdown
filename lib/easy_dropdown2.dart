@@ -1,10 +1,12 @@
-/// EasyDropdown is a Flutter library that provides an easy-to-use and customizable dropdown
-/// menu widget. It allows you to create dropdown menus that can be displayed below or
-/// above a button, with various configuration options for styling and behavior.
+/// EasyDropdown is a Flutter library that provides an easy-to-use and
+/// customizable dropdown menu widget. It allows you to create dropdown menus
+/// that can be displayed below or above a button, with various configuration
+/// options for styling and behavior.
 ///
-/// EasyDropdown simplifies the process of creating dropdowns in your Flutter app,
-/// making it straightforward to add interactive and user-friendly dropdowns to your
-/// UI.
+///
+/// EasyDropdown simplifies the process of creating dropdowns in your Flutter
+/// app, making it straightforward to add interactive and user-friendly
+/// dropdowns to your UI.
 ///
 /// Usage:
 /// ```
@@ -48,11 +50,14 @@
 /// This library provides the core classes [EasyDropdown] and [EasyDropdownTile]
 /// to create and customize dropdowns.
 ///
-/// For more details and customization options, refer to the documentation of each individual class.
+/// For more details and customization options, refer to the documentation of
+/// each individual class.
 library easy_dropdown;
 
 export 'src/easy_dropdown_alignment.dart' show EasyDropdownAlignment;
+export 'src/easy_dropdown_direction.dart' show EasyDropdownDirection;
 export 'src/easy_dropdown_tile.dart' show EasyDropdownTile;
 export 'src/easy_dropdown_config.dart' show EasyDropdownConfig;
 export 'src/easy_dropdown.dart' show EasyDropdown, EasyDropdownState;
-export 'src/easy_dropdown_list.dart' hide EasyDropdownList, EasyDropdownListState;
+export 'src/easy_dropdown_list.dart'
+    hide EasyDropdownList, EasyDropdownListState;

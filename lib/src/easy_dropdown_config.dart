@@ -1,4 +1,5 @@
 import 'package:easy_dropdown2/src/easy_dropdown_alignment.dart';
+import 'package:easy_dropdown2/src/easy_dropdown_direction.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
@@ -22,6 +23,10 @@ class EasyDropdownConfig extends Equatable {
   /// [dropdownAlignment]: Alignment of the dropdown relative to the button.
   /// If null, the default is [EasyDropdownAlignment.center].
   ///
+  /// [dropdownDirection]: Direction of the dropdown.
+  /// Use [EasyDropdownDirection] enum to specify the direction.
+  /// If null, the dropdown will follow the default direction.
+  ///
   /// [buttonMargin]: The margin between the button and the dropdown.
   ///
   /// [showDividers]: Whether to display dividers between items.
@@ -41,6 +46,7 @@ class EasyDropdownConfig extends Equatable {
     this.dropdownWidth,
     this.dropdownHeight,
     this.dropdownAlignment,
+    this.dropdownDirection,
     this.buttonMargin,
     this.showDividers,
     this.dividerBuilder,
@@ -69,6 +75,10 @@ class EasyDropdownConfig extends Equatable {
   /// Optional alignment of the dropdown relative to the button. Defaults to
   /// [EasyDropdownAlignment.center] if null.
   final EasyDropdownAlignment? dropdownAlignment;
+
+  /// Optional direction of the dropdown. Use [EasyDropdownDirection] enum to specify the direction.
+  /// If null, the dropdown will follow the default direction.
+  final EasyDropdownDirection? dropdownDirection;
 
   /// The margin between the button and the dropdown.
   ///
@@ -104,6 +114,7 @@ class EasyDropdownConfig extends Equatable {
         dropdownWidth,
         dropdownHeight,
         dropdownAlignment,
+        dropdownDirection,
         buttonMargin,
         showDividers,
         dividerBuilder,
