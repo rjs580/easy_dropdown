@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:easy_dropdown2/easy_dropdown2.dart';
 import 'package:easy_dropdown2/src/easy_dropdown_alignment.dart';
 import 'package:easy_dropdown2/src/easy_dropdown_config.dart';
 import 'package:easy_dropdown2/src/easy_dropdown_list.dart';
@@ -145,18 +146,50 @@ class EasyDropdownState extends State<EasyDropdown> {
               (widget.config.tileHeight ?? EasyDropdownList.kTileHeight);
           bool displayBelow = true;
 
-          if (spaceBelowButton >= minHeightOfTile) {
+          print(widget.config.dropdownDirection);
+
+          double verticalPosition;
+          double buttonMargin = widget.config.buttonMargin ?? 4;
+
+          if (widget.config.dropdownDirection == EasyDropdownDirection.above) {
+            displayBelow = false;
+
+            dropdownHeight = widget.config.dropdownHeight != null
+                ? minHeightOfTile
+                : spaceAboveButton;
+
+            verticalPosition = (buttonRenderBox.localToGlobal(Offset.zero).dy -
+                dropdownHeight -
+                buttonMargin);
+          } else if (widget.config.dropdownDirection ==
+              EasyDropdownDirection.below) {
+            displayBelow = true;
+            dropdownHeight = spaceBelowButton;
+
+            verticalPosition = (buttonRenderBox.localToGlobal(Offset.zero).dy +
+                buttonSize.height +
+                buttonMargin);
+          } else if (spaceBelowButton >= minHeightOfTile) {
             // Sufficient space below the button, display below
             dropdownHeight = spaceBelowButton;
+
+            verticalPosition = (buttonRenderBox.localToGlobal(Offset.zero).dy +
+                buttonSize.height +
+                buttonMargin);
           } else if (spaceAboveButton >= minHeightOfTile) {
             // Sufficient space above the button, display above
             dropdownHeight = widget.config.dropdownHeight != null
                 ? minHeightOfTile
                 : spaceAboveButton;
             displayBelow = false;
+
+            verticalPosition = (buttonRenderBox.localToGlobal(Offset.zero).dy -
+                dropdownHeight -
+                buttonMargin);
           } else {
             // Not enough space below or above, use a default height
             dropdownHeight = minHeightOfTile;
+            verticalPosition = screenSize.height / 2.0;
           }
 
           double horizontalPosition;
@@ -186,8 +219,6 @@ class EasyDropdownState extends State<EasyDropdown> {
               break;
           }
 
-          double buttonMargin = widget.config.buttonMargin ?? 4;
-
           return Stack(
             children: [
               Positioned.fill(
@@ -199,13 +230,14 @@ class EasyDropdownState extends State<EasyDropdown> {
                 ),
               ),
               Positioned(
-                top: spaceBelowButton >= minHeightOfTile
-                    ? (buttonRenderBox.localToGlobal(Offset.zero).dy +
-                        buttonSize.height +
-                        buttonMargin)
-                    : (buttonRenderBox.localToGlobal(Offset.zero).dy -
-                        dropdownHeight -
-                        buttonMargin),
+                top: verticalPosition,
+                // top: spaceBelowButton >= minHeightOfTile
+                //     ? (buttonRenderBox.localToGlobal(Offset.zero).dy +
+                //         buttonSize.height +
+                //         buttonMargin)
+                //     : (buttonRenderBox.localToGlobal(Offset.zero).dy -
+                //         dropdownHeight -
+                //         buttonMargin),
                 left: horizontalPosition,
                 child: SizedBox(
                   width: dropdownWidth,
